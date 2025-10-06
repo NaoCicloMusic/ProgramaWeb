@@ -1,0 +1,50 @@
+<div style="width: 400px; margin: 0 auto; padding: 20px;">
+    <div>
+        <form action="">
+            <div>
+                <label for="">
+                    Seleccionar archivo
+                </label>
+                <br>
+                <input type= "file" name="photo" accept="recursos/*">
+            </div>
+            <br>
+            <div>
+                <label for="">
+                    description
+                </label>
+                <br>
+                <input type="text" name= "description" placeholder="enter your description"[(ngModel)]="productObj.description">
+            </div>
+            <br>
+            <div>
+                <label for="">
+                    name
+                </label>
+                <br>
+                <input type="text" name="nam" placeholder="enter your name"[(ngModel)]="productObj.nam">
+            </div>
+            <br>
+            <div>
+                <label for="">
+                    price
+                </label>
+                <br>
+                <input type="text" name="price" placeholder="enter your price">
+            </div>
+            <br>
+            <div>
+                <input type="button" value="save article" (click)="onsaveRecord()">
+            </div>
+            <br>
+            <div>
+                <span>$</span>
+                <span>0.00</span>
+                <input type="text" aria-label="Dollar amount">
+            </div>
+        </form>
+    </div>
+    <div>
+        <title>Listado de Producto</title>
+    </div>
+</div>  
