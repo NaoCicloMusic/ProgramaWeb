@@ -1,12 +1,11 @@
-<header>
- <app-header></app-header>
+<header *ngIf="authService.isAuthenticated()">
+  <app-header></app-header>
 </header>
-<main>
-<app-home></app-home>
-</main>
-<app-bartest>
-</app-bartest>
-<footer>
-</footer>
 
-<router-outlet />
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer *ngIf="authService.isAuthenticated()">
+  <app-bartest></app-bartest>
+  </footer>
