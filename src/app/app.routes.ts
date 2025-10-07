@@ -21,8 +21,5 @@ export const routes: Routes = [
         path: 'admin',
         component: Admin
     },
-    {
-        path: '**', // Cualquier otra ruta, redirige al login
-        redirectTo: 'login'
-    }
+   
 ];
