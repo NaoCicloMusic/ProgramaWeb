@@ -1,27 +1,13 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
-export class Home {
-productObj={
-  description:'',
-  nam:'',
-  price:''
-}
-
-productList: any =[];
-
-
-  onsaveRecord(){
-    
-    this.productList.push(this.productObj);
-    localStorage.setItem('product',JSON.stringify(this.productList));
-    console.log(this.productList);
-    
-  }
+export class Home { // Se queda como 'Home'
 
 }

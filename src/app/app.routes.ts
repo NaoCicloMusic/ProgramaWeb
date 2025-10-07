@@ -1,38 +1,28 @@
-import { Routes,RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
 import { Login } from './login/login';
-import { Component, NgModule } from '@angular/core';
-import { Header } from './components/header/header';
-import { Bartest } from './component/bartest/bartest';
+import { Admin } from './components/admin/admin';
 
 export const routes: Routes = [
     {
-        path:'',
-        redirectTo:'Home',
-        pathMatch:'full'
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
     },
     {
-        path:'home',
+        path: 'login',
+        component: Login
+    },
+    {
+        path: 'home',
         component: Home
     },
     {
-        path:'login',
-        component:Login
+        path: 'admin',
+        component: Admin
     },
     {
- path:'haeader',
-    component:Header
-    },
-{
-        path: 'foother',
-
-},
-{
-path:'Bartest',
-component:Bartest
-},
+        path: '**', // Cualquier otra ruta, redirige al login
+        redirectTo: 'login'
+    }
 ];
-//
-//@NgModule((
-//export:[RouterModule]
-//));

@@ -1,21 +1,33 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../auth.service'; // 1. Importa el servicio
+import { AuthService } from '../../auth.service';
+import { RouterLink } from '@angular/router'; // 1. IMPORTA RouterLink
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterLink], // 2. AÑADE RouterLink aquí
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
 export class Header {
-  public headerOptions: string[] = ['lo Nuevo', 'Hombre'];
-  public headerIcons: string[] = ['<i class="bi bi-bag-heart-fill"></i>'];
+  public menuOptions = [
+    {
+      name: 'Lo Nuevo',
+      subItems: ['Tendencias', 'Lanzamientos', 'Colaboraciones']
+    },
+    {
+      name: 'Hombre',
+      subItems: ['Calzado', 'Playeras', 'Pantalones', 'Sudaderas', 'Accesorios']
+    },
+    {
+      name: 'Mujer',
+      subItems: ['Calzado', 'Tops y Playeras', 'Leggings', 'Sudaderas', 'Accesorios']
+    }
+  ];
 
-  // 2. Inyecta el servicio en el constructor
   constructor(private authService: AuthService) {}
 
-  // 3. Crea el método para cerrar sesión
   logout() {
     this.authService.logout();
   }

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bartest',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './bartest.html',
-  styleUrl: './bartest.css'
+  styleUrls: ['./bartest.css']
 })
-export class Bartest {
+export class Bartest { // Se queda como 'Bartest'
 
 }

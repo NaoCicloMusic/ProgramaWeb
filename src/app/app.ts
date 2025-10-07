@@ -1,30 +1,22 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { Home } from './components/home/home';
+import { CommonModule } from '@angular/common';
 import { Header } from './components/header/header';
-import { Login } from "./login/login";
 import { Bartest } from './component/bartest/bartest';
-import { Footer } from "./components/footer/footer";
-import { AdminComponent } from "./components/admin/admin";
-import { AuthService } from './auth.service'; // 1. Importa el servicio
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
-    CommonModule, // Añádelo a los imports
+    CommonModule,
     RouterOutlet,
-    Home,
-    Header,
-    Bartest,
-    Login,
-    Footer,
-    AdminComponent
+    Header,     // Usamos el nombre de tu clase 'Header'
+    Bartest     // Usamos el nombre de tu clase 'Bartest'
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  // 2. Inyecta el servicio para poder usarlo en el HTML
   constructor(public authService: AuthService) {}
 }

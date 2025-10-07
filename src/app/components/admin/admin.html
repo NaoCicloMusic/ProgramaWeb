@@ -1,1 +1,30 @@
-<p>admin works!</p>
+<div class="container mt-4">
+  <div class="card mx-auto" style="max-width: 500px;">
+    <div class="card-header">
+      <h2>Panel de Administrador</h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Agregar Nuevo Producto</h5>
+      <form>
+        <div class="mb-3">
+          <label for="description" class="form-label">Descripción</label>
+          <input type="text" class="form-control" name="description" placeholder="Ingresa la descripción" [(ngModel)]="productObj.description">
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="nam" placeholder="Ingresa el nombre del producto" [(ngModel)]="productObj.nam">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Precio</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" name="price" placeholder="0.00" [(ngModel)]="productObj.price">
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="button" class="btn btn-primary" (click)="onsaveRecord()">Guardar Artículo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
