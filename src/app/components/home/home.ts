@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home { // Se queda como 'Home'
-
+export class Home {
+  constructor(public authService: AuthService) {}
 }

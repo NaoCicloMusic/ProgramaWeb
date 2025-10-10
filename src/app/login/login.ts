@@ -10,12 +10,10 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.css']
 })
 export class Login {
-  // Objeto para los datos del formulario
   loginObj = {
     id: '',
     password: ''
   };
-  // Variable para el rol seleccionado, cliente por defecto
   userType: string = 'cliente';
 
   constructor(private authService: AuthService) {}
@@ -24,14 +22,16 @@ export class Login {
     if (this.userType === 'administrador') {
       // Validación para el Administrador
       if (this.loginObj.id === 'admin' && this.loginObj.password === 'admin') {
-        this.authService.login('administrador'); // Inicia sesión como admin
+        // CORRECCIÓN: Le avisamos al servicio que el admin ha iniciado sesión
+        this.authService.login('administrador');
       } else {
         alert("Datos de administrador incorrectos");
       }
     } else {
       // Validación para el Cliente
       if (this.loginObj.id === '01' && this.loginObj.password === '123') {
-        this.authService.login('cliente'); // Inicia sesión como cliente
+        // CORRECCIÓN: Le avisamos al servicio que el cliente ha iniciado sesión
+        this.authService.login('cliente');
       } else {
         alert("Datos de cliente incorrectos");
       }

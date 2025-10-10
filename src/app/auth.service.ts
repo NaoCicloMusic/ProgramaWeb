@@ -8,6 +8,9 @@ export class AuthService {
   public isAuthenticated = signal<boolean>(false);
   public userRole = signal<string>('');
 
+  // NUEVO: Lista central de productos para compartir entre componentes
+  public productList = signal<any[]>([]);
+
   constructor(private router: Router) { }
 
   login(role: string) {

@@ -18,7 +18,7 @@
             </a>
             <ul class="dropdown-menu">
               <li *ngFor="let item of option.subItems">
-                <a class="dropdown-item" href="#">{{ item }}</a>
+                <a class="dropdown-item" href="#" (click)="$event.preventDefault()">{{ item }}</a>
               </li>
             </ul>
           </li>

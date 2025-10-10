@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <div class="card mx-auto" style="max-width: 500px;">
+  <div class="card mx-auto" style="max-width: 600px;">
     <div class="card-header">
       <h2>Panel de Administrador</h2>
     </div>
@@ -7,24 +7,59 @@
       <h5 class="card-title">Agregar Nuevo Producto</h5>
       <form>
         <div class="mb-3">
-          <label for="description" class="form-label">Descripción</label>
-          <input type="text" class="form-control" name="description" placeholder="Ingresa la descripción" [(ngModel)]="productObj.description">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="nam" [(ngModel)]="productObj.nam">
         </div>
         <div class="mb-3">
-          <label for="name" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="nam" placeholder="Ingresa el nombre del producto" [(ngModel)]="productObj.nam">
+          <label class="form-label">Descripción</label>
+          <input type="text" class="form-control" name="description" [(ngModel)]="productObj.description">
         </div>
         <div class="mb-3">
-          <label for="price" class="form-label">Precio</label>
-          <div class="input-group">
-            <span class="input-group-text">$</span>
-            <input type="number" class="form-control" name="price" placeholder="0.00" [(ngModel)]="productObj.price">
-          </div>
+          <label class="form-label">Precio</label>
+          <input type="number" class="form-control" name="price" [(ngModel)]="productObj.price">
         </div>
+
+        <div class="mb-3">
+          <label for="productImage" class="form-label">Imagen del Producto</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)">
+        </div>
+        <div *ngIf="productObj.image" class="mb-3 text-center">
+          <img [src]="productObj.image" style="max-height: 150px; border-radius: 8px;">
+        </div>
+
         <div class="d-grid">
           <button type="button" class="btn btn-primary" (click)="onsaveRecord()">Guardar Artículo</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="card mx-auto mt-4" style="max-width: 600px;">
+    <div class="card-header">
+      <h5>Listado de Productos</h5>
+    </div>
+    <div class="card-body">
+      <div *ngIf="localProductList.length > 0; else noProducts">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of localProductList">
+              <td>{{ product.nam }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.price | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noProducts>
+        <p class="text-center text-muted">Aún no hay productos agregados.</p>
+      </ng-template>
     </div>
   </div>
 </div>
