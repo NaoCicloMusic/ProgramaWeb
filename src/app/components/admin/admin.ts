@@ -15,10 +15,9 @@ export class Admin {
     nam: '',
     description: '',
     price: null,
-    image: '' // Campo para la imagen
+    image: ''
   };
 
-  // Mantenemos una lista local para la tabla del admin
   localProductList: any[] = [];
 
   constructor(private authService: AuthService) {}
@@ -35,15 +34,9 @@ export class Admin {
   }
 
   onsaveRecord() {
-    // 1. Añadimos el producto a la lista local (para la tabla del admin)
     this.localProductList.push({ ...this.productObj });
-
-    // 2. Añadimos el producto al servicio (para la vista del cliente)
     this.authService.productList.update(currentProducts => [...currentProducts, this.productObj]);
-    
     alert('Producto agregado!');
-
-    // Limpiamos el formulario
     this.productObj = {
       nam: '',
       description: '',

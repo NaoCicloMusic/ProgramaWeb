@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  // Una "señal" para saber si el usuario está autenticado.
-  // Inicia en 'false' (no autenticado).
+  
   public isAuthenticated = signal<boolean>(false);
   public userRole = signal<string>('');
 
@@ -14,7 +13,7 @@ export class AuthService {
 
   // Método para iniciar sesión
   login(role: string) {
-    this.isAuthenticated.set(true); // Cambiamos la señal a 'true'
+    this.isAuthenticated.set(true); 
     this.userRole.set(role);
     if (role === 'administrador') {
       this.router.navigate(['/admin']);

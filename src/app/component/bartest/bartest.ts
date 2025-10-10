@@ -3,11 +3,11 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bartest',
-  standalone: true,
-  imports: [RouterLink],
+  standalone: true, // <-- SE AÑADE ESTA LÍNEA
+  imports: [RouterLink], // <-- Y ESTA LÍNEA
   templateUrl: './bartest.html',
   styleUrls: ['./bartest.css']
 })
-export class Bartest { // Se queda como 'Bartest'
+export class Bartest {
 
 }

@@ -20,17 +20,13 @@ export class Login {
 
   onLogin() {
     if (this.userType === 'administrador') {
-      // Validación para el Administrador
       if (this.loginObj.id === 'admin' && this.loginObj.password === 'admin') {
-        // CORRECCIÓN: Le avisamos al servicio que el admin ha iniciado sesión
         this.authService.login('administrador');
       } else {
         alert("Datos de administrador incorrectos");
       }
     } else {
-      // Validación para el Cliente
       if (this.loginObj.id === '01' && this.loginObj.password === '123') {
-        // CORRECCIÓN: Le avisamos al servicio que el cliente ha iniciado sesión
         this.authService.login('cliente');
       } else {
         alert("Datos de cliente incorrectos");
