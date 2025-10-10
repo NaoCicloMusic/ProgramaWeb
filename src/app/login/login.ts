@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +9,32 @@ import { Router} from '@angular/router';
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
-export class Login { // Se queda como 'Login'
-  userType: string = 'usuario';
-loginOBJ:any={
-correo:'',
-password: '',
-ID: ''
-}
- router=inject(Router);
+export class Login {
+  // Objeto para los datos del formulario
+  loginObj = {
+    id: '',
+    password: ''
+  };
+  // Variable para el rol seleccionado, cliente por defecto
+  userType: string = 'cliente';
 
   constructor(private authService: AuthService) {}
 
-  login() {
-    this.authService.login(this.userType);
-  }
-  onlogin(){
-    if( this.loginOBJ.ID=='01'&&this.loginOBJ.password=='123'){
-      this.router.navigateByUrl('home')
-    }
-      else{
- alert ("wrong credentials");
+  onLogin() {
+    if (this.userType === 'administrador') {
+      // Validación para el Administrador
+      if (this.loginObj.id === 'admin' && this.loginObj.password === 'admin') {
+        this.authService.login('administrador'); // Inicia sesión como admin
+      } else {
+        alert("Datos de administrador incorrectos");
       }
-
-    
+    } else {
+      // Validación para el Cliente
+      if (this.loginObj.id === '01' && this.loginObj.password === '123') {
+        this.authService.login('cliente'); // Inicia sesión como cliente
+      } else {
+        alert("Datos de cliente incorrectos");
+      }
+    }
   }
 }
