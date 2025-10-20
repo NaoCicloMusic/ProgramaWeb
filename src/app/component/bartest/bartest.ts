@@ -3,8 +3,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bartest',
-  standalone: true, // <-- SE AÑADE ESTA LÍNEA
-  imports: [RouterLink], // <-- Y ESTA LÍNEA
+  standalone: true,
+  imports: [RouterLink], 
   templateUrl: './bartest.html',
   styleUrls: ['./bartest.css']
 })
