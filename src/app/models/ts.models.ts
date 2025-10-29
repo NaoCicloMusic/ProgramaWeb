@@ -3,6 +3,5 @@ photo: string;
 name: string;
 description: string;
 price: number;
-status: string;
-
+sport: string[];
 }
