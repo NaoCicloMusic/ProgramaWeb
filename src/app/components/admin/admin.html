@@ -8,25 +8,22 @@
       <form>
         <div class="mb-3">
           <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="nam" [(ngModel)]="productObj.nam">
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="productObj.nombre">
         </div>
         <div class="mb-3">
           <label class="form-label">Descripción</label>
-          <input type="text" class="form-control" name="description" [(ngModel)]="productObj.description">
+          <input type="text" class="form-control" name="descripcion" [(ngModel)]="productObj.descripcion">
         </div>
         <div class="mb-3">
           <label class="form-label">Precio</label>
-          <input type="number" class="form-control" name="price" [(ngModel)]="productObj.price">
+          <input type="number" class="form-control" name="precio" [(ngModel)]="productObj.precio">
         </div>
 
         <div class="mb-3">
-          <label for="productImage" class="form-label">Imagen del Producto</label>
-          <input class="form-control" type="file" (change)="onFileSelected($event)">
+          <label for="productFoto" class="form-label">Ruta de la Imagen (Foto)</label>
+          <input type="text" class="form-control" name="foto" [(ngModel)]="productObj.foto" placeholder="Ej: recursos/Tenis.jpeg">
         </div>
-        <div *ngIf="productObj.image" class="mb-3 text-center">
-          <img [src]="productObj.image" style="max-height: 150px; border-radius: 8px;">
-        </div>
-
+        
         <div class="d-grid">
           <button type="button" class="btn btn-primary" (click)="onsaveRecord()">Guardar Artículo</button>
         </div>
@@ -36,29 +33,31 @@
 
   <div class="card mx-auto mt-4" style="max-width: 600px;">
     <div class="card-header">
-      <h5>Listado de Productos</h5>
+      <h5>Listado de Productos (desde MySQL)</h5>
     </div>
     <div class="card-body">
-      <div *ngIf="localProductList.length > 0; else noProducts">
+      <div *ngIf="productList.length > 0; else noProducts">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Precio</th>
+              <th>Ruta Foto</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of localProductList">
-              <td>{{ product.nam }}</td>
-              <td>{{ product.description }}</td>
-              <td>{{ product.price | currency }}</td>
+            <tr *ngFor="let product of productList">
+              <td>{{ product.nombre }}</td>
+              <td>{{ product.descripcion }}</td>
+              <td>{{ product.precio | currency }}</td>
+              <td>{{ product.foto }}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <ng-template #noProducts>
-        <p class="text-center text-muted">Aún no hay productos agregados.</p>
+        <p class="text-center text-muted">Aún no hay productos en la base de datos.</p>
       </ng-template>
     </div>
   </div>

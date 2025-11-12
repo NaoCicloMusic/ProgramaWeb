@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductosService, Producto } from '../../services/productos'; 
+import { ProductosService } from '../../services/productos';
+import { Producto } from '../../models/ts.models';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -9,10 +11,18 @@ import { ProductosService, Producto } from '../../services/productos';
   styleUrls: ['./home.css']
 })
 export class Home implements OnInit {
-  listaDeProductos: Producto[] = [];
+  
+  productList: Producto[] = [];
+
   constructor(private productosService: ProductosService) {}
+
   ngOnInit(): void {
- 
-    this.listaDeProductos = this.productosService.obtenerProductos();
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productosService.getProductos().subscribe((data) => {
+      this.productList = data;
+    });
   }
 }

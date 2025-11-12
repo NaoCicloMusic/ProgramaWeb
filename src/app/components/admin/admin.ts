@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'; // 1. Importa OnInit
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { ProductosService } from '../../services/productos'; // Importa tu servicio
+import { Producto } from '../../models/ts.models'; // Importa tu modelo
 
 @Component({
   selector: 'app-admin',
@@ -10,51 +11,34 @@ import { AuthService } from '../../auth.service';
   templateUrl: './admin.html',
   styleUrls: ['./admin.css']
 })
-export class Admin implements OnInit { 
-  productObj = {
-    nam: '',
-    description: '',
-    price: null,
-    image: ''
+export class Admin implements OnInit {
+  
+  productList: Producto[] = []; 
+
+  productObj: Producto = {
+    nombre: '',
+    descripcion: '',
+    precio: 0,
+    foto: '' 
   };
 
-  localProductList: any[] = [];
-
-  constructor(private authService: AuthService) {}
+  constructor(private productosService: ProductosService) {}
 
   ngOnInit(): void {
-
-    this.localProductList = this.authService.productList();
+    this.loadProducts();
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.productObj.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
+  loadProducts() {
+    this.productosService.getProductos().subscribe((data) => {
+      this.productList = data;
+    });
   }
 
   onsaveRecord() {
- 
-    const updatedList = [...this.localProductList, this.productObj];
-    
-    this.authService.saveProductsToStorage(updatedList);
-
-    this.authService.productList.set(updatedList);
-
-    this.localProductList = updatedList;
-    
-    alert('Producto agregado!');
-
-    this.productObj = {
-      nam: '',
-      description: '',
-      price: null,
-      image: ''
-    };
+    this.productosService.crearProducto(this.productObj).subscribe(() => {
+      alert('Producto agregado a la Base de Datos!');
+      this.loadProducts(); // Recarga la tabla
+      this.productObj = { nombre: '', descripcion: '', precio: 0, foto: '' };
+    });
   }
 }
