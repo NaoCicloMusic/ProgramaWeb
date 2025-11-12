@@ -11,8 +11,8 @@ import { AuthService } from './auth.service';
   imports: [
     CommonModule,
     RouterOutlet,
-    Header,     // Usamos el nombre de tu clase 'Header'
-    Bartest     // Usamos el nombre de tu clase 'Bartest'
+    Header,     
+    Bartest     
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

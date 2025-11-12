@@ -18,14 +18,12 @@ export class Admin implements OnInit {
     image: ''
   };
 
-  // La lista local para la tabla se cargará desde el servicio
   localProductList: any[] = [];
 
   constructor(private authService: AuthService) {}
 
-  // método se ejecuta cuando el componente se carga
   ngOnInit(): void {
-    // Cargamos la lista de productos del servicio en nuestra lista local
+
     this.localProductList = this.authService.productList();
   }
 

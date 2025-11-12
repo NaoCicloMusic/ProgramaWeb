@@ -5,8 +5,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // <-- SE AÑADE ESTA LÍNEA
-  imports: [CommonModule, RouterLink], // <-- Y ESTA LÍNEA
+  standalone: true, 
+  imports: [CommonModule, RouterLink], 
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core'; // Importa OnInit
+import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-// Importa el servicio y la interfaz
-import { ProductosService, Producto } from '../../services/productos'; // Sin .service
+import { ProductosService, Producto } from '../../services/productos'; 
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -9,16 +8,11 @@ import { ProductosService, Producto } from '../../services/productos'; // Sin .s
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
-export class Home implements OnInit { // Implementa OnInit
-  // Declara una variable para guardar los productos
+export class Home implements OnInit {
   listaDeProductos: Producto[] = [];
-
-  // Inyecta el ProductosService
   constructor(private productosService: ProductosService) {}
-
-  // ngOnInit se ejecuta cuando el componente se inicializa
   ngOnInit(): void {
-    // Llama al método del servicio para obtener los productos
+ 
     this.listaDeProductos = this.productosService.obtenerProductos();
   }
 }
