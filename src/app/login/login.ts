@@ -10,27 +10,36 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.css']
 })
 export class Login {
+  // Objeto para guardar lo que escribes en el formulario
   loginObj = {
-    id: '',
+    correo: '',    // Antes era 'id'
     password: ''
   };
-  userType: string = 'cliente';
+  
+  userType: string = 'cliente'; // Por defecto es cliente
 
   constructor(private authService: AuthService) {}
 
   onLogin() {
     if (this.userType === 'administrador') {
-      if (this.loginObj.id === 'admin' && this.loginObj.password === 'admin') {
-        this.authService.login('administrador');
+      // --- ADMIN (Sigue igual: admin / admin) ---
+      if (this.loginObj.correo === 'admin' && this.loginObj.password === 'admin') {
+        this.authService.loginAdmin();
       } else {
         alert("Datos de administrador incorrectos");
       }
     } else {
-      if (this.loginObj.id === '01' && this.loginObj.password === '123') {
-        this.authService.login('cliente');
-      } else {
-        alert("Datos de cliente incorrectos");
-      }
+      // --- CLIENTE (Ahora verifica con MySQL) ---
+      this.authService.loginCliente(this.loginObj).subscribe({
+        next: () => {
+          console.log('¡Bienvenido!');
+          // La redirección la hace el servicio
+        },
+        error: (error) => {
+          console.error(error);
+          alert("Correo o contraseña incorrectos (Verifica que el usuario exista en MySQL)");
+        }
+      });
     }
   }
 }
