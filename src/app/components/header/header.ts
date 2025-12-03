@@ -5,8 +5,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true, 
-  imports: [CommonModule, RouterLink], 
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
@@ -26,7 +26,8 @@ export class Header {
     }
   ];
 
-  constructor(private authService: AuthService) {}
+  // Hacemos 'public' el authService para poder usarlo en el HTML (para mostrar el nombre)
+  constructor(public authService: AuthService) {}
 
   logout() {
     this.authService.logout();

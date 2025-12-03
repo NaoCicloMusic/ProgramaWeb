@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" routerLink="/home">
-        <img src="recursos/NIKELO.webp" alt="Logo de la App" width="35" height="35" class="d-inline-block me-2">
+        <img src="recursos/NIKELO.webp" alt="Logo" width="35" height="35" class="d-inline-block me-2">
         <span class="fw-bold">Neo Vision</span>
       </a>
       
@@ -23,7 +23,16 @@
             </ul>
           </li>
         </ul>
-        <button class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
+
+        <div class="d-flex align-items-center gap-3">
+          <span class="fw-bold text-primary" *ngIf="authService.currentUser()">
+            Hola, {{ authService.currentUser().nombre }}
+          </span>
+          
+          <button class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   </nav>
