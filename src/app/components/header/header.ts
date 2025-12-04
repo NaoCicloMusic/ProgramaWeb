@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
-import { StoreService } from '../../services/store'; // Import desde 'store'
+import { StoreService } from '../../services/store'; // Importamos el servicio
 
 @Component({
   selector: 'app-header',
@@ -18,6 +18,7 @@ export class Header {
     { name: 'Mujer', subItems: ['Calzado', 'Ropa'] }
   ];
 
+  // Inyectamos StoreService (public para usarlo en el HTML)
   constructor(public authService: AuthService, public storeService: StoreService) {}
 
   logout() {

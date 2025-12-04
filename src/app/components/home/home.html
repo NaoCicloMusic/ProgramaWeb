@@ -7,15 +7,25 @@
   <div *ngIf="productList.length > 0; else noProducts" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     
     <div *ngFor="let product of productList" class="col">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm border-0">
         <img [src]="product.foto" class="card-img-top" alt="{{ product.nombre }}" style="height: 250px; object-fit: cover;">
+        
         <div class="card-body">
           <h5 class="card-title">{{ product.nombre }}</h5>
           <p class="card-text text-muted">{{ product.descripcion }}</p>
-          <p class="card-text fw-bold fs-4">{{ product.precio | currency }}</p>
+          <p class="card-text fw-bold fs-4 text-primary">{{ product.precio | currency }}</p>
         </div>
-        <div class="card-footer bg-transparent border-0">
-           <a href="#" (click)="$event.preventDefault()" class="btn btn-primary w-100">Agregar al carrito</a>
+
+        <div class="card-footer bg-white border-0 pb-3">
+           <div class="d-flex gap-2">
+             <button class="btn btn-dark flex-grow-1" (click)="agregarAlCarrito(product)">
+               Agregar al carrito <i class="bi bi-cart-plus ms-1"></i>
+             </button>
+
+             <button class="btn btn-outline-danger" (click)="agregarAFavoritos(product)" title="Añadir a favoritos">
+               <i class="bi bi-heart"></i>
+             </button>
+           </div>
         </div>
       </div>
     </div>

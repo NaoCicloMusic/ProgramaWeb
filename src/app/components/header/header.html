@@ -13,12 +13,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown" *ngFor="let option of menuOptions">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               {{ option.name }}
             </a>
             <ul class="dropdown-menu">
               <li *ngFor="let item of option.subItems">
-                <a class="dropdown-item" href="#" (click)="$event.preventDefault()">{{ item }}</a>
+                <a class="dropdown-item" href="#">{{ item }}</a>
               </li>
             </ul>
           </li>
@@ -26,18 +26,30 @@
 
         <div class="d-flex align-items-center gap-3">
           
-          <button class="btn btn-outline-danger border-0" title="Mis Favoritos">
+          <button class="btn btn-light position-relative text-danger" routerLink="/favorites" title="Favoritos">
             <i class="bi bi-heart-fill fs-5"></i>
+            <span *ngIf="storeService.favorites().length > 0" 
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ storeService.favorites().length }}
+            </span>
           </button>
 
-          <div *ngIf="authService.currentUser()" class="d-flex align-items-center" style="cursor: pointer;" routerLink="/profile" title="Ver mi perfil">
-            <span class="fw-bold text-primary me-2">
-              Hola, {{ authService.currentUser().nombre }}
+          <button class="btn btn-light position-relative text-primary" routerLink="/cart" title="Carrito">
+            <i class="bi bi-cart4 fs-5"></i>
+            <span *ngIf="storeService.cart().length > 0"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ storeService.cart().length }}
             </span>
-            <i class="bi bi-person-circle fs-4 text-primary"></i>
+          </button>
+
+          <div *ngIf="authService.currentUser()" class="d-flex align-items-center cursor-pointer" routerLink="/profile" style="cursor: pointer;">
+            <div class="text-end me-2 d-none d-lg-block">
+              <div class="fw-bold text-dark" style="font-size: 0.9rem;">Hola, {{ authService.currentUser().nombre }}</div>
+            </div>
+            <i class="bi bi-person-circle fs-3 text-primary"></i>
           </div>
           
-          <button class="btn btn-danger btn-sm" (click)="logout()">
+          <button class="btn btn-outline-dark btn-sm" (click)="logout()">
             <i class="bi bi-box-arrow-right"></i>
           </button>
         </div>
