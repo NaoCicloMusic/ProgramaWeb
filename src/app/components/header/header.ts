@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../auth.service';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { StoreService } from '../../services/store'; // Import desde 'store'
 
 @Component({
   selector: 'app-header',
@@ -12,22 +13,12 @@ import { RouterLink } from '@angular/router';
 })
 export class Header {
   public menuOptions = [
-    {
-      name: 'Lo Nuevo',
-      subItems: ['Tendencias', 'Lanzamientos', 'Colaboraciones']
-    },
-    {
-      name: 'Hombre',
-      subItems: ['Calzado', 'Playeras', 'Pantalones', 'Sudaderas', 'Accesorios']
-    },
-    {
-      name: 'Mujer',
-      subItems: ['Calzado', 'Tops y Playeras', 'Leggings', 'Sudaderas', 'Accesorios']
-    }
+    { name: 'Lo Nuevo', subItems: ['Tendencias', 'Lanzamientos'] },
+    { name: 'Hombre', subItems: ['Calzado', 'Ropa'] },
+    { name: 'Mujer', subItems: ['Calzado', 'Ropa'] }
   ];
 
-  // Hacemos 'public' el authService para poder usarlo en el HTML (para mostrar el nombre)
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public storeService: StoreService) {}
 
   logout() {
     this.authService.logout();

@@ -25,12 +25,20 @@
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <span class="fw-bold text-primary" *ngIf="authService.currentUser()">
-            Hola, {{ authService.currentUser().nombre }}
-          </span>
           
-          <button class="btn btn-danger" (click)="logout()">
-            Logout
+          <button class="btn btn-outline-danger border-0" title="Mis Favoritos">
+            <i class="bi bi-heart-fill fs-5"></i>
+          </button>
+
+          <div *ngIf="authService.currentUser()" class="d-flex align-items-center" style="cursor: pointer;" routerLink="/profile" title="Ver mi perfil">
+            <span class="fw-bold text-primary me-2">
+              Hola, {{ authService.currentUser().nombre }}
+            </span>
+            <i class="bi bi-person-circle fs-4 text-primary"></i>
+          </div>
+          
+          <button class="btn btn-danger btn-sm" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
           </button>
         </div>
       </div>

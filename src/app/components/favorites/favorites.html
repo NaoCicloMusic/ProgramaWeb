@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-danger"><i class="bi bi-heart-fill"></i> Tus Favoritos</h2>
+
+  <div *ngIf="storeService.favorites().length > 0; else noFavs" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="col" *ngFor="let item of storeService.favorites(); let i = index">
+      <div class="card h-100 shadow-sm border-0">
+        <img [src]="item.foto" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.nombre }}</h5>
+          <p class="card-text fw-bold text-primary">{{ item.precio | currency }}</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-outline-danger w-100" (click)="storeService.removeFromFavorites(i)">
+            Quitar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noFavs>
+    <div class="text-center py-5 text-muted">
+      <h4>No tienes favoritos guardados.</h4>
+    </div>
+  </ng-template>
+</div>

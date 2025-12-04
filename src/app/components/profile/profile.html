@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      
+      <div class="card shadow border-0 rounded-4">
+        
+        <div class="card-header text-center py-4 text-white rounded-top-4" 
+             style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <i class="bi bi-person-circle" style="font-size: 4rem;"></i>
+          <h3 class="mt-2 fw-bold">Mi Perfil</h3>
+        </div>
+
+        <div class="card-body p-4" *ngIf="authService.currentUser(); else noData">
+          
+          <div class="list-group list-group-flush">
+            
+            <div class="list-group-item py-3">
+              <small class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">Nombre</small>
+              <div class="d-flex align-items-center mt-1">
+                <i class="bi bi-emoji-smile me-3 fs-4 text-primary"></i>
+                <h5 class="mb-0">{{ authService.currentUser().nombre }}</h5>
+              </div>
+            </div>
+
+            <div class="list-group-item py-3">
+              <small class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">Correo Electrónico</small>
+              <div class="d-flex align-items-center mt-1">
+                <i class="bi bi-envelope-at me-3 fs-4 text-danger"></i>
+                <h5 class="mb-0">{{ authService.currentUser().correo }}</h5>
+              </div>
+            </div>
+
+            <div class="list-group-item py-3">
+              <small class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">Tipo de Usuario</small>
+              <div class="d-flex align-items-center mt-1">
+                <i class="bi bi-shield-lock me-3 fs-4 text-success"></i>
+                <span class="badge bg-success rounded-pill px-3">{{ authService.userRole() | titlecase }}</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-primary w-100 rounded-pill">
+              <i class="bi bi-pencil-square me-2"></i> Editar Información
+            </button>
+          </div>
+
+        </div>
+
+        <ng-template #noData>
+          <div class="card-body text-center">
+            <p class="text-muted">No has iniciado sesión.</p>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>
